@@ -1,0 +1,51 @@
+﻿{% extends 'base.html' %}
+
+{% block content %}
+<nav>
+    <div class="nav nav-tabs navbar bg-dark" id="nav-tab" role="tablist">
+        <span class="navbar-brand" href="#">
+            <img src="https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/b/b0/JuARaVeInSy.png/revision/latest/scale-to-width-down/310?cb=20120722164138"
+                width="30" height="30" alt="" loading="lazy">
+        </span>
+        <a class="nav-link" href="#nav-home">Home</a>
+        <a class="nav-link" href="#nav-product">Our Products</a>
+
+        {% if user.is_authenticated %}
+        <h5> Hello, {{ user.first_name }}</h5>
+        <a class="nav-link" href="accounts/logout">Logout</a>
+
+        {% else %}
+        <a class="nav-link" href="accounts/register">Register</a>
+        <a class="nav-link" href="accounts/login">Login</a>
+        {% endif %}
+    </div>
+</nav>
+<br/><br/><br/><br/>
+<div class="transbox">
+    {% for dest in dests %}
+    <div>
+        <img src="{{ dest.image.url }}">
+
+        {% if dest.offer %}
+        <a href="#">Special Offer</a>
+        {% endif %}
+
+        <h1>{{dest.name}}</h1>
+        <p>{{dest.desc}}</p>
+        <h4>{{dest.price}}</h4>
+    </div>
+    {% endfor %}
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+
+{% endblock %}
